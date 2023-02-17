@@ -28,7 +28,7 @@ function inicializaContadores() {
 
         let qtdCaracteres = conteudo.length;
         $("#contador-caracteres").text(qtdCaracteres);
-
+            
     });
 }
 
@@ -54,9 +54,18 @@ function InicializaCronometro() {
 }
 let frase = $(".frase").text();
 campo.on("input", function(){
-var digitado = campo.val();
+let digitado = campo.val();
+let comparavel = frase.substr(0,digitado.length);
+console.log("Digitado:" + digitado);
+console.log("Frase C.:" + comparavel);
+if(digitado == comparavel){
+    campo.addClass("borda-verde");
 
-})
+}else {
+    campo.addClass("borda-vermelho");
+}
+
+});
 
 function reiniciaJogo() {
     campo.attr("disabled", false);
