@@ -5,6 +5,7 @@ $(document).ready(function () {
     atualizaTamanhoFrase();
     inicializaContadores();
     InicializaCronometro();
+    inializaMarcadores();
     $("#bota-reiniciar").click(reiniciaJogo);
 
 });
@@ -52,22 +53,26 @@ function InicializaCronometro() {
 
     });
 }
-let frase = $(".frase").text();
-campo.on("input", function(){
-let digitado = campo.val();
-let comparavel = frase.substr(0,digitado.length);
-console.log("Digitado:" + digitado);
-console.log("Frase C.:" + comparavel);
-if(digitado == comparavel){
-    campo.addClass("borda-verde");
-    campo.removeCass("borda-vermelho")
+    function inializaMarcadores(){
+        let frase = $(".frase").text();
+        campo.on("input", function(){
+        let digitado = campo.val();
+        let comparavel = frase.substr(0,digitado.length);
+        console.log("Digitado:" + digitado);
+        console.log("Frase C.:" + comparavel);
+        if(digitado == comparavel){
+            campo.addClass("borda-verde");
+            campo.removeClass("borda-vermelho");
+        
+        }else {
+            campo.addClass("borda-vermelho");
+            campo.removeClass("borda-verde");
+        }
+        
+        });
+    }
 
-}else {
-    campo.addClass("borda-vermelho");
-    campo.removeCass("borda-verde")
-}
 
-});
 
 function reiniciaJogo() {
     campo.attr("disabled", false);
@@ -76,6 +81,8 @@ function reiniciaJogo() {
     $("#contador-caracteres").text("0");
     $("tempo-digitacao").text(tempoInicial);
     InicializaCronometro();
+    campo.removeClass("borda-vermelho");
+    campo.removeClass("borda-verde");
     campo.toggleClass("campo-desativado")
 }
 
