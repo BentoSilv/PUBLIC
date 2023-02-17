@@ -60,9 +60,11 @@ console.log("Digitado:" + digitado);
 console.log("Frase C.:" + comparavel);
 if(digitado == comparavel){
     campo.addClass("borda-verde");
+    campo.removeCass("borda-vermelho")
 
 }else {
     campo.addClass("borda-vermelho");
+    campo.removeCass("borda-verde")
 }
 
 });
